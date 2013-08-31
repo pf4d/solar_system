@@ -1,11 +1,15 @@
+import sys
+sys.path.append('../')
+
 from scipy.integrate.ode import *
-from RungeKutta45 import RungeKutta45
+from src.RungeKutta45    import RungeKutta45
+from src.solarBase       import *
+from numpy               import *
+from pylab               import *
 import math
+import random
 
-from numpy import *
-from pylab import *
 
-from solarBase import *
 
 
 # constants : 
@@ -82,9 +86,9 @@ time = array(time)
 etot, ltot, e, l = conservative(rf, m, G, M)
 
 # find the percent change in conservative forces :
-#eChange = etot / etot[0] - 1
-#lChange = ltot / ltot[0] - 1
-#diff    = eChange + 2*lChange
+eChange = etot / etot[0] - 1
+lChange = ltot / ltot[0] - 1
+diff    = eChange + 2*lChange
 
 # find the semi-major axes of all the asteroids :
 a = semi_major_axes(rf, m, e, G, M)
@@ -96,7 +100,6 @@ ylabel('Number of Asteroids')
 savefig('hist.png')
 show()
 
-'''
 # Plotting :
 ion()
 # figsize arguement results in 1920 x 1080 pixel output image
@@ -156,7 +159,6 @@ for t in [len(time)]:
 
 savefig('output.png')
 show()
-'''
 
 
 
